@@ -2,6 +2,8 @@
 
 A [node-sass custom importer][node-sass-custom-importer] for ingredients in the [Roux][Roux ecosystem].
 
+[![Build Status](https://travis-ci.org/RetailMeNotSandbox/roux-sass-importer.svg?branch=master)](https://travis-ci.org/RetailMeNotSandbox/roux-sass-importer) [![Coverage Status](https://coveralls.io/repos/github/RetailMeNotSandbox/roux-sass-importer/badge.svg?branch=master)](https://coveralls.io/github/RetailMeNotSandbox/roux-sass-importer?branch=master)
+
 ## Installation
 
 ```sh
@@ -51,9 +53,9 @@ console.log(
 
 If the import path can be parsed by `roux.parseIngredientPath`,
 then the importer will try to look up the corresponding Sass entry point for
-that ingredient by instantiating the pantry with `roux.initialize`. 
-If successful, the import path is resolved to the entry point, otherwise 
-an error is returned. This means that relative file system paths which look 
+that ingredient by instantiating the pantry with `roux.initialize`.
+If successful, the import path is resolved to the entry point, otherwise
+an error is returned. This means that relative file system paths which look
 like ingredient paths will not work.
 
 Ideally, if we couldn't find the pantry in any of the `pantrySearchPaths`, we
