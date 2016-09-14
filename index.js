@@ -108,6 +108,7 @@ module.exports = function (config) {
 	 * [1]: https://github.com/sass/node-sass#importer--v200---experimental
 	 */
 	return function Importer(url, prev, done) {
+		var pantry;
 		this._rouxImportOnceCache = this._rouxImportOnceCache || {};
 
 		// If we are being asked to resolve a relative url, we want to let
@@ -116,7 +117,7 @@ module.exports = function (config) {
 		// then we want to add it to this._rouxImportOnceCache, and prevent it from
 		// showing up in the output if we encounter an @import for that
 		// same file again. To do this, we resolve the relative `url` with
-		// respect to `prev` and if the resolved fully qualified URL is a child 
+		// respect to `prev` and if the resolved fully qualified URL is a child
 		// of one of the pantries in config.pantries, we apply our caching logic.
 		if (url.charAt(0) === '.') {
 			var baseDir = pathParse(prev).dir;
@@ -129,7 +130,7 @@ module.exports = function (config) {
 			// children. If so, apply caching logic and return as appropriate.
 			var pantries = Object.keys(config.pantries);
 			for (var i = 0; i < pantries.length; ++i) {
-				var pantry = config.pantries[pantries[i]];
+				pantry = config.pantries[pantries[i]];
 				if (!(pantry instanceof Pantry)) {
 					continue;
 				}
@@ -156,7 +157,7 @@ module.exports = function (config) {
 			return sass.NULL;
 		}
 
-		var pantry = config.pantries[parsedPath.pantry];
+		pantry = config.pantries[parsedPath.pantry];
 
 		// There are three posibilities:
 		// 1. The pantry already exists and is initialized
@@ -170,7 +171,13 @@ module.exports = function (config) {
 			(pantry || roux.resolve(parsedPath.pantry, config))
 				.then(function (pantry) {
 					config.pantries[parsedPath.pantry] = pantry;
-					done(getImportPath(this._rouxImportOnceCache, pantry, parsedPath.ingredient));
+					done(
+						getImportPath(
+							this._rouxImportOnceCache,
+							pantry,
+							parsedPath.ingredient
+						)
+					);
 				}.bind(this))
 				.catch(function (errs) {
 					var err = new Error(util.format('Failed to resolve %s', url));
@@ -180,6 +187,11 @@ module.exports = function (config) {
 
 			return undefined;
 		}
-		return getImportPath(this._rouxImportOnceCache, pantry, parsedPath.ingredient);
+
+		return getImportPath(
+			this._rouxImportOnceCache,
+			pantry,
+			parsedPath.ingredient
+		);
 	};
 };

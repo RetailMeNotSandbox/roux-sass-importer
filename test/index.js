@@ -452,9 +452,13 @@ tap.test('paths like `@namespace/pantry/ingredient`', function (t) {
 					file: expected
 				}, 'the path to the Sass entry point is returned asynchronously');
 				var doneSpyFn = sinon.spy();
-				t.same(importer(original, IMPORTING_PATH, doneSpyFn), {
-					contents: ''
-				}, 'an empty file is returned synchronously the second time a file is imported');
+				t.same(
+					importer(original, IMPORTING_PATH, doneSpyFn),
+					{
+						contents: ''
+					},
+					'returns an empty file synchronously the 2nd time a file is imported'
+				);
 
 				t.notOk(
 					doneSpyFn.called, 'the function passed as `done` is not called');
@@ -502,7 +506,9 @@ tap.test('node-sass integration', function (t) {
 		content['node_modules/npm-pantry/ingredient/index.scss']
 	);
 	fs.writeFileSync(
-		path.resolve(nodeModulesPath, 'npm-pantry', 'ingredient', 'relative-import.scss'),
+		path.resolve(
+			nodeModulesPath, 'npm-pantry', 'ingredient', 'relative-import.scss'
+		),
 		content['node_modules/npm-pantry/ingredient/relative-import.scss']
 	);
 	fs.writeFileSync(
