@@ -131,7 +131,7 @@ module.exports = function (config) {
 			var pantries = Object.keys(config.pantries);
 			for (var i = 0; i < pantries.length; ++i) {
 				pantry = config.pantries[pantries[i]];
-				if (!(pantry instanceof Pantry)) {
+				if (!Pantry.isPantry(pantry)) {
 					continue;
 				}
 
