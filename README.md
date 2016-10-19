@@ -101,6 +101,9 @@ cached, the above process completes synchronously. If not cached, the pantry is
 looked up in the locations named by `config.pantrySearchPaths`. The first
 matching pantry found is cached and the above process performed.
 
+- `NODE_SASS_NULL` -  The object to return when node-sass should do its
+  thing. You should pass `require('node-sass').NULL` from your webpack
+  config in the repo that's consuming this module.
 - `config` - optional config object for the importer
 - `config.pantries` - optional primed cache of pantries, defaults to `{}`
 - `config.pantrySearchPaths` - optional array of paths to search for pantries
