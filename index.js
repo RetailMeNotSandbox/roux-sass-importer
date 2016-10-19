@@ -62,9 +62,8 @@ function getImportPath(importCache, pantry, ingredientName) {
  * matching pantry found is cached and the above process performed.
  *
  * @param {*} NODE_SASS_NULL The object to return when node-sass should do its
- *                           thing. You should pass require('node-sass').NULL
- *                           from your webpack config in the repo that's
- *                           consuming this module.
+ *   thing. You should pass require('node-sass').NULL from your webpack config
+ *   in the repo that's consuming this module.
  * @param {Object} [config] - the importer configuration
  * @param {Object} [config.pantries] - the cache of pantries to use, defaults to
  *   `{}`. Should be {name:pantry} mappings. If pantry is a string, it will be
