@@ -8,8 +8,9 @@ var rimraf = require('rimraf');
 var sinon = require('sinon');
 var tap = require('tap');
 var touch = require('touch');
-
 var sass = require('node-sass');
+
+var NODE_SASS_NULL = 'NODE_SASS_NULL';
 var rouxSassImporter = require('../');
 
 var FIXTURES_DIR = path.resolve(__dirname, 'fixtures');
@@ -44,7 +45,7 @@ tap.test('exports a function', function (t) {
 		t.autoend();
 
 		t.doesNotThrow(function () {
-			rouxSassImporter();
+			rouxSassImporter(NODE_SASS_NULL);
 		}, 'optional');
 
 		_.forEach(
@@ -56,7 +57,7 @@ tap.test('exports a function', function (t) {
 			],
 			function (arg) {
 				t.throws(function () {
-					rouxSassImporter(arg);
+					rouxSassImporter(NODE_SASS_NULL, arg);
 				}, 'must be an object or undefined');
 			});
 
@@ -72,7 +73,7 @@ tap.test('exports a function', function (t) {
 				],
 				function (arg) {
 					t.throws(function () {
-						rouxSassImporter({
+						rouxSassImporter(NODE_SASS_NULL, {
 							pantries: arg
 						});
 					}, 'must be an object or undefined');
@@ -94,7 +95,7 @@ tap.test('exports a function', function (t) {
 				],
 				function (arg) {
 					t.throws(function () {
-						rouxSassImporter({
+						rouxSassImporter(NODE_SASS_NULL, {
 							pantrySearchPaths: arg
 						});
 					}, 'must be an array or undefined');
@@ -112,7 +113,7 @@ tap.test('exports a function', function (t) {
 				var config = {
 					pantries: {}
 				};
-				var importer = rouxSassImporter(config).bind({});
+				var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 				var original = 'pantry/ingredient';
 				var expected = path.resolve(
@@ -143,15 +144,39 @@ tap.test('absolute paths are not handled', function (t) {
 	var url = '/some/absolute/path';
 	var doneFn = sinon.spy();
 
-	var importer = rouxSassImporter({}).bind({});
+	var importer = rouxSassImporter(NODE_SASS_NULL, {}).bind({});
 
 	t.same(
 		importer(url, IMPORTING_PATH, doneFn),
-		sass.NULL,
-		'`sass.NULL` is returned synchronously'
+		NODE_SASS_NULL,
+		'`NODE_SASS_NULL` is returned synchronously'
 	);
 
 	t.notOk(doneFn.called, 'the function passed as `done` is not called');
+});
+
+tap.test('throws if NODE_SASS_NULL argument is omitted', function (t) {
+	t.autoend();
+	var importer = rouxSassImporter.bind();
+	t.throws(
+		importer,
+		'Throws if no arguments passed.'
+	);
+});
+
+tap.test('returns whatever NODE_SASS_NULL it is passed', function (t) {
+	t.autoend();
+
+	var url = '/some/absolute/path';
+	var doneFn = sinon.spy();
+
+	var importer = rouxSassImporter('NODE_SASS_NULL_OVERRIDE', {}).bind({});
+
+	t.same(
+		importer(url, IMPORTING_PATH, doneFn),
+		'NODE_SASS_NULL_OVERRIDE',
+		'`NODE_SASS_NULL_OVERRIDE` is returned synchronously'
+	);
 });
 
 tap.test('relative paths are returned unchanged', function (t) {
@@ -160,12 +185,12 @@ tap.test('relative paths are returned unchanged', function (t) {
 	var url = '../some/other/relative/path';
 	var doneFn = sinon.spy();
 
-	var importer = rouxSassImporter({}).bind({});
+	var importer = rouxSassImporter(NODE_SASS_NULL, {}).bind({});
 
 	t.same(
 		importer(url, IMPORTING_PATH, doneFn),
-		sass.NULL,
-		'`sass.NULL` is returned synchronously'
+		NODE_SASS_NULL,
+		'`NODE_SASS_NULL` is returned synchronously'
 	);
 
 	t.notOk(doneFn.called, 'the function passed as `done` is not called');
@@ -190,7 +215,7 @@ tap.test('paths like `pantry/ingredient`', function (t) {
 				}
 			}
 		};
-		var importer = rouxSassImporter({
+		var importer = rouxSassImporter(NODE_SASS_NULL, {
 			pantries: {
 				pantry: mockPantry
 			}
@@ -223,7 +248,7 @@ tap.test('paths like `pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var original = 'not-a-pantry/ingredient';
 			var doneFn = function (result) {
@@ -249,7 +274,7 @@ tap.test('paths like `pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var original = 'pantry/ingredient';
 			var expected = path.resolve(
@@ -284,7 +309,7 @@ tap.test('paths like `pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var toImport = 'pantry/ingredient';
 			var expected = path.resolve(
@@ -340,7 +365,7 @@ tap.test('paths like `@namespace/pantry/ingredient`', function (t) {
 				}
 			}
 		};
-		var importer = rouxSassImporter({
+		var importer = rouxSassImporter(NODE_SASS_NULL, {
 			pantries: {
 				'@namespace/pantry': mockPantry
 			}
@@ -373,7 +398,7 @@ tap.test('paths like `@namespace/pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var original = '@namespace/not-a-pantry/ingredient';
 			var doneFn = function (result) {
@@ -401,7 +426,7 @@ tap.test('paths like `@namespace/pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var original = '@namespace/pantry/ingredient';
 			var expected = path.resolve(
@@ -438,7 +463,7 @@ tap.test('paths like `@namespace/pantry/ingredient`', function (t) {
 				pantries: {},
 				pantrySearchPaths: [FIXTURES_DIR]
 			};
-			var importer = rouxSassImporter(config).bind({});
+			var importer = rouxSassImporter(NODE_SASS_NULL, config).bind({});
 
 			var original = '@namespace/pantry/ingredient';
 			var expected = path.resolve(
@@ -563,7 +588,7 @@ tap.test('node-sass integration', function (t) {
 		content['@namespace/cached-pantry/ingredient/index.scss']
 	);
 
-	var importer = rouxSassImporter({
+	var importer = rouxSassImporter(NODE_SASS_NULL, {
 		pantries: {
 			'cached-pantry': {
 				ingredients: {

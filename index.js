@@ -4,7 +4,6 @@ var path = require('path');
 var pathParse = require('path-parse');
 var roux = require('@retailmenot/roux');
 var Pantry = require('@retailmenot/roux/lib/pantry');
-var sass = require('node-sass');
 var util = require('util');
 
 function importOnce(importCache, value) {
@@ -40,7 +39,7 @@ function getImportPath(importCache, pantry, ingredientName) {
 /**
  * Get a node-sass custom importer[1] with the provided configuration
  *
- * The importer returns `sass.NULL` unless it matches one of the following
+ * The importer returns `NODE_SASS_NULL` unless it matches one of the following
  * patterns:
  *
  * - @<namespace>/<pantry>/<ingredient>
@@ -62,6 +61,9 @@ function getImportPath(importCache, pantry, ingredientName) {
  * looked up in the locations named by `config.pantrySearchPaths`. The first
  * matching pantry found is cached and the above process performed.
  *
+ * @param {*} NODE_SASS_NULL The object to return when node-sass should do its
+ *   thing. You should pass require('node-sass').NULL from your webpack config
+ *   in the repo that's consuming this module.
  * @param {Object} [config] - the importer configuration
  * @param {Object} [config.pantries] - the cache of pantries to use, defaults to
  *   `{}`. Should be {name:pantry} mappings. If pantry is a string, it will be
@@ -72,7 +74,11 @@ function getImportPath(importCache, pantry, ingredientName) {
  *
  * [1]: https://github.com/sass/node-sass#importer--v200---experimental
  */
-module.exports = function (config) {
+module.exports = function (NODE_SASS_NULL, config) {
+	if (arguments.length < 1) {
+		throw new Error('Argument NODE_SASS_NULL is required.');
+	}
+
 	config = roux.normalizeConfig(config);
 	config.pantries = _.mapValues(config.pantries, function (pantry, name) {
 		if (_.isString(pantry)) {
@@ -112,7 +118,7 @@ module.exports = function (config) {
 		this._rouxImportOnceCache = this._rouxImportOnceCache || {};
 
 		// If we are being asked to resolve a relative url, we want to let
-		// the sass importer do its thing by returning sass.NULL, however
+		// the sass importer do its thing by returning NODE_SASS_NULL, however
 		// if that relative URL refers to a file that is a child of a pantry,
 		// then we want to add it to this._rouxImportOnceCache, and prevent it from
 		// showing up in the output if we encounter an @import for that
@@ -144,7 +150,7 @@ module.exports = function (config) {
 						{
 							contents: ''
 						} :
-						sass.NULL;
+						NODE_SASS_NULL;
 				}
 			}
 		}
@@ -154,7 +160,7 @@ module.exports = function (config) {
 		if (parsedPath == null) {
 			// url was not a valid ingredient name, so pass the @import path
 			// along unmodified
-			return sass.NULL;
+			return NODE_SASS_NULL;
 		}
 
 		pantry = config.pantries[parsedPath.pantry];

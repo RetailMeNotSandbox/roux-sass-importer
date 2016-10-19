@@ -37,6 +37,7 @@
     "grunt": "^0.4.5",
     "gruntify-eslint": "^1.3.0",
     "mkdirp": "^0.5.1",
+    "node-sass": "^3.10.1",
     "rimraf": "^2.4.3",
     "sinon": "^1.17.2",
     "tap": "^2.2.0",
@@ -46,7 +47,6 @@
     "@retailmenot/roux": "^1.0.1",
     "bluebird": "^3.0.6",
     "lodash": "^3.10.1",
-    "node-sass": "^3.4.2",
     "path-parse": "^1.0.5",
     "validate-npm-package-name": "^2.2.2"
   }
