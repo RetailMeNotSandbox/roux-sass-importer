@@ -26,7 +26,7 @@ Create an importer and pass it to node-sass as follows:
 var sass = require('node-sass');
 var rouxSassImporter = require('@retailmenot/roux-sass-importer');
 
-var importer = rouxSassImporter({
+var importer = rouxSassImporter(sass.NULL, {
   pantries: {
     '@namespace/pantry': somePantryInstance,
     // This will be initialized and cached across calls to the
