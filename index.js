@@ -76,8 +76,7 @@ function getImportPath(importCache, pantry, ingredientName) {
  * [1]: https://github.com/sass/node-sass#importer--v200---experimental
  */
 module.exports = function (NODE_SASS_NULL, config) {
-
-	if(arguments.length < 1) {
+	if (arguments.length < 1) {
 		throw new Error('Argument NODE_SASS_NULL is required.');
 	}
 

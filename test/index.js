@@ -157,17 +157,12 @@ tap.test('absolute paths are not handled', function (t) {
 
 tap.test('throws if NODE_SASS_NULL argument is omitted', function (t) {
 	t.autoend();
-
-	var url = '/some/absolute/path';
-	var doneFn = sinon.spy();
-
 	var importer = rouxSassImporter.bind();
 	t.throws(
 		importer,
 		'Throws if no arguments passed.'
 	);
 });
-
 
 tap.test('returns whatever NODE_SASS_NULL it is passed', function (t) {
 	t.autoend();
@@ -224,7 +219,7 @@ tap.test('paths like `pantry/ingredient`', function (t) {
 			pantries: {
 				pantry: mockPantry
 			}
-		} ).bind({});
+		}).bind({});
 
 		var original = 'pantry/ingredient';
 		var expected = path.join(
