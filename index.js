@@ -147,9 +147,9 @@ module.exports = function (NODE_SASS_NULL, config) {
 				// If the import is a child of the pantry, apply our caching logic
 				if (absoluteImportUrl.indexOf(absolutePantryUrl) === 0) {
 					return this._rouxImportOnceCache[absoluteImportUrl] === true ?
-						{
-							contents: ''
-						} :
+					{
+						contents: ''
+					} :
 						NODE_SASS_NULL;
 				}
 			}
