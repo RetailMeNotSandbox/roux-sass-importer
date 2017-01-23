@@ -36,16 +36,19 @@ var importer = rouxSassImporter(sass.NULL, {
   pantrySearchPaths: [
     path.resolve('node_modules'),
     path.resolve('some/other/path')
-  ];
+  ]
 });
 
-console.log(
-  sass.render({
-    file: 'path/to/your/file.scss',
-    importer: importer
-  })
-);
+sass.render({
+  file: 'path/to/your/file.scss',
+  importer: importer
+},
+function(err, result){
+  console.log(result && result.css.toString());
+});
 ```
+
+If passing only a path, and you have nested the pantry entry, please ensure that you have correctly noted that in your package.json, per the [roux README][pantry-root-readme].
 
 ## Relative `@import` paths
 
@@ -112,3 +115,4 @@ matching pantry found is cached and the above process performed.
 [Roux]:https://github.com/RetailMeNotSandbox/roux
 [node-sass-custom-importer]: https://github.com/sass/node-sass#importer--v200---experimental
 [node-sass#1296]: https://github.com/sass/node-sass/issues/1296
+[pantry-root-readme]:https://github.com/RetailMeNotSandbox/roux#relocating-the-ingredients-base-directory
