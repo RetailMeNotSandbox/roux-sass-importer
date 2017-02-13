@@ -48,6 +48,6 @@
     "bluebird": "^3.0.6",
     "lodash": "^4.16.4",
     "path-parse": "^1.0.5",
-    "validate-npm-package-name": "^2.2.2"
+    "validate-npm-package-name": "^3.0.0"
   }
 }
