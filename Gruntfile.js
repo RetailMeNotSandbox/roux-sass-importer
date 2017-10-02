@@ -3,7 +3,15 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 		eslint: {
-			src: ['./']
+			lint: {
+				src: ['./']
+			},
+			fix: {
+				options: {
+					fix: true
+				},
+				src: ['./']
+			}
 		}
 	});
 
