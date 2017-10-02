@@ -1,3 +1,5 @@
+### 2.1.0
+
 - Updated eslint, @retailmenot/core-ui-eslintrc, gruntify-eslint
 - Updated changes from updated eslint rules
 - Added package-lock.json generated from npm@5.4.2
