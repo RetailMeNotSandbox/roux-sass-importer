@@ -33,15 +33,15 @@
   "license": "MIT",
   "devDependencies": {
     "@retailmenot/core-ui-eslintrc": "^6.0.0",
-    "eslint": "^4.8.0",
+    "eslint": "^4.10.0",
     "grunt": "^1.0.1",
     "gruntify-eslint": "^4.0.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^3.10.1",
     "rimraf": "^2.4.3",
-    "sinon": "^1.17.2",
-    "tap": "^8.0.0",
-    "touch": "^1.0.0"
+    "sinon": "^4.1.1",
+    "tap": "^10.7.2",
+    "touch": "^3.1.0"
   },
   "dependencies": {
     "@retailmenot/roux": "^1.0.1",
