@@ -33,20 +33,20 @@
   "license": "MIT",
   "devDependencies": {
     "@retailmenot/core-ui-eslintrc": "^6.0.0",
-    "eslint": "^4.10.0",
-    "grunt": "^1.0.1",
+    "eslint": "^4.19.1",
+    "grunt": "^1.0.2",
     "gruntify-eslint": "^4.0.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.0.0",
     "rimraf": "^2.4.3",
-    "sinon": "^5.0.0",
+    "sinon": "^4.5.0",
     "tap": "^11.0.0",
     "touch": "^3.1.0"
   },
   "dependencies": {
     "@retailmenot/roux": "^1.0.1",
     "bluebird": "^3.5.1",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.5",
     "path-parse": "^1.0.5",
     "validate-npm-package-name": "^3.0.0"
   }
