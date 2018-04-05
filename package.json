@@ -37,7 +37,7 @@
     "grunt": "^1.0.2",
     "gruntify-eslint": "^4.0.0",
     "mkdirp": "^0.5.1",
-    "node-sass": "^4.0.0",
+    "node-sass": "^4.8.3",
     "rimraf": "^2.4.3",
     "sinon": "^4.5.0",
     "tap": "^11.0.0",
