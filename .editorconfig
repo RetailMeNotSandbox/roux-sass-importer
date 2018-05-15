@@ -9,5 +9,5 @@ insert_final_newline = true
 [{.eslintrc,package.json}]
 indent_style = space
 
-[*.md]
+[*.{md,yml}]
 indent_style = space
