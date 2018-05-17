@@ -41,7 +41,7 @@
     "node-sass": "^4.9.0",
     "rimraf": "^2.4.3",
     "sinon": "^5.0.7",
-    "tap": "^11.1.5",
+    "tap": "^12.0.0",
     "touch": "^3.1.0"
   },
   "dependencies": {
