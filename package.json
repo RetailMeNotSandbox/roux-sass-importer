@@ -35,7 +35,7 @@
     "@retailmenot/core-ui-eslintrc": "^6.0.0",
     "eslint": "^5.0.1",
     "grunt": "^1.0.2",
-    "gruntify-eslint": "^4.0.0",
+    "gruntify-eslint": "^5.0.0",
     "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.0",
