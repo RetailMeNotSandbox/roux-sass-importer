@@ -13,7 +13,7 @@
     "url": "https://github.com/RetailMeNotSandbox/roux-sass-importer.git"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
   "keywords": [
     "roux",
