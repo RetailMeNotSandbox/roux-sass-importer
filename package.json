@@ -45,7 +45,7 @@
     "touch": "^3.1.0"
   },
   "dependencies": {
-    "@retailmenot/roux": "^1.0.4",
+    "@retailmenot/roux": "^2.0.0",
     "bluebird": "^3.5.3",
     "path-parse": "^1.0.6",
     "validate-npm-package-name": "^3.0.0"
