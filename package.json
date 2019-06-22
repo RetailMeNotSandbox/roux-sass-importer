@@ -33,7 +33,7 @@
   "license": "MIT",
   "devDependencies": {
     "@retailmenot/core-ui-eslintrc": "^7.0.0",
-    "eslint": "^5.8.0",
+    "eslint": "^6.0.0",
     "grunt": "^1.0.3",
     "gruntify-eslint": "^5.0.0",
     "lodash": "^4.17.11",
