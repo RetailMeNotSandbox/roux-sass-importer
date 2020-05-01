@@ -6,7 +6,9 @@
   "scripts": {
     "test": "tap -Rspec test/*.js",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint-fix": "eslint . --fix",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,8 @@
     "@retailmenot/roux": "^2.0.0",
     "bluebird": "^3.7.2",
     "path-parse": "^1.0.6",
-    "validate-npm-package-name": "^3.0.0"
-  }
+    "validate-npm-package-name": "^3.0.0",
+    "snyk": "^1.316.2"
+  },
+  "snyk": true
 }
