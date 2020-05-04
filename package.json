@@ -36,22 +36,22 @@
   "devDependencies": {
     "@retailmenot/core-ui-eslintrc": "^7.0.0",
     "eslint": "^6.8.0",
-    "grunt": "^1.0.3",
+    "grunt": "^1.1.0",
     "gruntify-eslint": "^5.0.0",
     "lodash": "^4.17.15",
-    "mkdirp": "^1.0.3",
-    "node-sass": "^4.13.1",
-    "rimraf": "^3.0.1",
-    "sinon": "^9.0.0",
-    "tap": "^14.10.6",
+    "mkdirp": "^1.0.4",
+    "node-sass": "^4.14.0",
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.2",
+    "snyk": "^1.317.0",
+    "tap": "^14.10.7",
     "touch": "^3.1.0"
   },
   "dependencies": {
-    "@retailmenot/roux": "^2.0.0",
+    "@retailmenot/roux": "^2.1.0",
     "bluebird": "^3.7.2",
     "path-parse": "^1.0.6",
-    "validate-npm-package-name": "^3.0.0",
-    "snyk": "^1.316.2"
+    "validate-npm-package-name": "^3.0.0"
   },
   "snyk": true
 }
